@@ -16,4 +16,4 @@ python-dotenv = "*"
 dj-database-url = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.6"
