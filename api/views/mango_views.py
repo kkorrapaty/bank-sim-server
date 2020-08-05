@@ -61,6 +61,9 @@ class MangoDetail(generics.RetrieveUpdateDestroyAPIView):
         # Locate Mango
         mango = get_object_or_404(Mango, pk=pk)
         # Check if user is  the same
+
+        # CHANGE TO:
+        # if not request.user.id == mango.owner.id:
         if not request.user.id == mango['owner']:
             raise PermissionDenied('Unauthorized, you do not own this mango')
 

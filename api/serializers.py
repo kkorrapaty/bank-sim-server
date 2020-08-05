@@ -3,7 +3,12 @@ from rest_framework import serializers
 
 from .models.mango import Mango
 from .models.user import User
+from .models.saving import Saving
 
+class SavingSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Saving
+    fields = ('amount', 'owner')
 
 class MangoSerializer(serializers.ModelSerializer):
     class Meta:
