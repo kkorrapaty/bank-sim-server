@@ -32,9 +32,9 @@ if os.getenv('ENV') == 'development':
 else:
   DB = dj_database_url.config()
   DEBUG = False
-  CORS_ORIGIN_WHITELIST = [
+  CORS_ORIGIN_WHITELIST = (
     os.getenv('CLIENT_ORIGIN')
-  ]
+  )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
