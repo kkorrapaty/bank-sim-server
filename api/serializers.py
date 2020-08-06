@@ -18,13 +18,14 @@ class MangoSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ('id', 'email', 'password')
+        fields = ('name', 'id', 'email', 'password')
         extra_kwargs = {'password': {'write_only': True, 'min_length': 5}}
 
     def create(self, validated_data):
         return get_user_model().objects.create_user(**validated_data)
 
 class UserLoginSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=300, required=True)
     email = serializers.CharField(max_length=300, required=True)
     password = serializers.CharField(required=True, write_only=True)
 

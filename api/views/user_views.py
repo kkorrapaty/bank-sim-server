@@ -37,6 +37,7 @@ class SignIn(generics.CreateAPIView):
             if user.is_active:
                 login(request, user)
                 return Response({
+                    'name': user.name,
                     'id': user.id,
                     'email': user.email,
                     'token': user.get_auth_token(user)
