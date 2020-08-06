@@ -12,6 +12,8 @@ from ..models.user import User
 class SignUp(generics.CreateAPIView):
     authentication_classes = ()
     permission_classes = ()
+    serializer_class = UserSerializer
+
     def post(self, request):
         user = UserSerializer(data=request.data['credentials'])
         if user.is_valid():
@@ -35,6 +37,7 @@ class SignIn(generics.CreateAPIView):
             if user.is_active:
                 login(request, user)
                 return Response({
+                    'name': user.name,
                     'id': user.id,
                     'email': user.email,
                     'token': user.get_auth_token(user)

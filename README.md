@@ -2,7 +2,7 @@
 
 # Django Auth Template
 
-This template contains a project, `django_auth_template`, and an app, `api`, which are set up complete with user authentication and an example resource, `Mango`, which has an example user ownership implementation.
+This template contains a project, `bank-sim-server`, and an app, `api`, which are set up complete with user authentication and an example resource, `Mango`, which has an example user ownership implementation.
 
 ## Preparation
 
@@ -24,7 +24,7 @@ This template contains a project, `django_auth_template`, and an app, `api`, whi
     1. Type `psql` to get into interactive shell.
     2. Run `CREATE DATABASE "project_db_name";` where `project_db_name` is the name you want for your database.
 1. Add the database name to the `.env` file using the key `DB_NAME_DEV`.
-1. Replace all instances of `django_auth_template` with your application name. This includes the folder included in this repository.
+1. Replace all instances of `bank-sim-server` with your application name. This includes the folder included in this repository.
 2. Generate a secret key using [this tool](https://djecrety.ir) and add it to the `.env` file using the key `SECRET`.
 1. Open the repository in Atom with `atom .`
 
@@ -52,7 +52,7 @@ Commands are run with the syntax `python3 manage.py <command>`:
 
 ## Deployment
 
-Before deploying, make sure you have renamed your project folder and replaced all instances of `django_auth_template` with your app's name.
+Before deploying, make sure you have renamed your project folder and replaced all instances of `bank-sim-server` with your app's name.
 
 Once ready, you can follow the steps in the [django-heroku-deployment-guide](https://git.generalassemb.ly/ga-wdi-boston/django-heroku-deployment-guide).
 
