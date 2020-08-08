@@ -4,6 +4,7 @@ from rest_framework import serializers
 from .models.mango import Mango
 from .models.user import User
 from .models.saving import Saving
+from .models.transaction import Transaction
 
 import uuid
 
@@ -11,6 +12,12 @@ class SavingSerializer(serializers.ModelSerializer):
   class Meta:
     model = Saving
     fields = ('amount', 'owner')
+
+class TransactionSerializer(serializers.ModelSerializer):
+  # account = SavingSerializer(read_only=True)
+  class Meta:
+    model = Transaction
+    fields = '__all__'
 
 class MangoSerializer(serializers.ModelSerializer):
     class Meta:
