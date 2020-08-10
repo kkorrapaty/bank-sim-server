@@ -9,6 +9,7 @@ from django.middleware.csrf import get_token
 
 # Import Model
 from ..models.transaction import Transaction
+from ..models.saving import Saving
 # Import Serializer
 from ..serializers import TransactionSerializer
 
@@ -16,8 +17,10 @@ class Transactions(generics.ListCreateAPIView):
   permission_classes = (IsAuthenticated,)
   def get(self, request):
     """Index Request"""
-    # print('INSIDE', request.user.id)
-    transactions = Transaction.objects.filter(account=request.user.id)
+    # print('INSIDE', request.account)
+    saving_account = Saving.objects.get(owner=request.user.id)
+
+    transactions = Transaction.objects.filter(account=saving_account)
     # transactions = Transaction.objects.all()
     # display the transactions to the end user
     data = TransactionSerializer(transactions, many=True).data
@@ -26,14 +29,33 @@ class Transactions(generics.ListCreateAPIView):
   serializer_class = TransactionSerializer
   def post(self, request):
     """Create Request"""
+    saving_account = Saving.objects.get(owner=request.user.id)
     # Add user to request object
-    request.data['transaction']['account'] = request.user.id
+
+    # request.data['transaction']['account'] = saving_account
+
     # Serialize/Create Transactions
     transaction = TransactionSerializer(data=request.data['transaction'])
     # check if it exists (valid) and save it
     if transaction.is_valid():
-      s = transaction.save()
-      return Response(transaction.data, status=status.HTTP_201_CREATED)
+      # check account specified is in list of user's accounts
+      # print('INSIDE', transaction.validated_data['account'].id)
+      # print(saving_account.id)
+
+      # account id
+      id = transaction.validated_data['account'].id
+      if not saving_account.id == id:
+        # send custom error response -> not valid account
+        raise PermissionDenied("Unauthorized, you do not have the right to create another's transactions")
+      else:
+        s = transaction.save()
+        return Response(transaction.data, status=status.HTTP_201_CREATED)
+
+      return Response(transaction.data)
+      # dont need this
+      # transaction.account = saving_account
+      # Create transaction for assigned saving_account
+      # saving_account.transaction_set.add(transaction)
     else:
       return Response(transaction.errors, status=status.HTTP_400_BAD_REQUEST)
 

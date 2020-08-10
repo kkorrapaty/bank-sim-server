@@ -11,13 +11,13 @@ import uuid
 class SavingSerializer(serializers.ModelSerializer):
   class Meta:
     model = Saving
-    fields = ('amount', 'owner')
+    fields = ('id', 'amount', 'owner')
 
 class TransactionSerializer(serializers.ModelSerializer):
   # account = SavingSerializer(read_only=True)
   class Meta:
     model = Transaction
-    fields = '__all__'
+    fields = ('id', 'change_in_amount', 'curr_total', 'account')
 
 class MangoSerializer(serializers.ModelSerializer):
     class Meta:

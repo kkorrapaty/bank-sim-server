@@ -16,7 +16,6 @@ class Saving(models.Model):
   owner = models.OneToOneField(
     User,
     on_delete=models.CASCADE,
-    primary_key=True,
   )
 
   created_at = models.DateTimeField(auto_now_add=True)

@@ -67,6 +67,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     # unique ID Generator
     userid = uuid.uuid1().node
 
+    # userid = models.UUIDField(
+    #   default=uuid.uuid4().int,
+    #   editable=False
+    # )
+
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
