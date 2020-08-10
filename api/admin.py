@@ -4,6 +4,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models.user import User
 from .models.mango import Mango
 from .models.saving import Saving
+from .models.transaction import Transaction
 
 class UserAdmin(BaseUserAdmin):
     ordering = ['id']
@@ -42,3 +43,4 @@ class UserAdmin(BaseUserAdmin):
 admin.site.register(User, UserAdmin)
 admin.site.register(Mango)
 admin.site.register(Saving)
+admin.site.register(Transaction)

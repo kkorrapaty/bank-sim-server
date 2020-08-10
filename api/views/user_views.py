@@ -40,6 +40,7 @@ class SignIn(generics.CreateAPIView):
                     'name': user.name,
                     'id': user.id,
                     'email': user.email,
+                    'userid': user.userid,
                     'token': user.get_auth_token(user)
                 })
             else:

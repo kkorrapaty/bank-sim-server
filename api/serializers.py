@@ -4,11 +4,20 @@ from rest_framework import serializers
 from .models.mango import Mango
 from .models.user import User
 from .models.saving import Saving
+from .models.transaction import Transaction
+
+import uuid
 
 class SavingSerializer(serializers.ModelSerializer):
   class Meta:
     model = Saving
-    fields = ('amount', 'owner')
+    fields = ('id', 'amount', 'owner')
+
+class TransactionSerializer(serializers.ModelSerializer):
+  # account = SavingSerializer(read_only=True)
+  class Meta:
+    model = Transaction
+    fields = ('id', 'change_in_amount', 'curr_total', 'account')
 
 class MangoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,7 +27,7 @@ class MangoSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ('name', 'id', 'email', 'password')
+        fields = ('name', 'id', 'email', 'password', 'userid')
         extra_kwargs = {'password': {'write_only': True, 'min_length': 5}}
 
     def create(self, validated_data):

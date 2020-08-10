@@ -7,7 +7,7 @@ from .user import User
 class Saving(models.Model):
   # fields
   # minimum amount is $50
-  amount = models.DecimalField(max_digits=6, decimal_places=2, validators = [MinValueValidator(50.00)])
+  amount = models.DecimalField(max_digits=8, decimal_places=2, validators = [MinValueValidator(50.00)])
   # connect to user
   # owner = models.ForeignKey(
   #   User,
@@ -16,8 +16,11 @@ class Saving(models.Model):
   owner = models.OneToOneField(
     User,
     on_delete=models.CASCADE,
-    primary_key=True,
   )
+
+  created_at = models.DateTimeField(auto_now_add=True)
+
+  updated_at = models.DateTimeField(auto_now=True)
 
   #return string
   def __str__(self):

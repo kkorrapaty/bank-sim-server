@@ -3,6 +3,9 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.conf import settings
 from rest_framework.authtoken.models import Token
 
+# Import Unique ID Generator
+import uuid
+
 class UserManager(BaseUserManager):
     """Manager for user profiles"""
 
@@ -60,6 +63,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     # for the model with the type and options:
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
+
+    # unique ID Generator
+    userid = uuid.uuid1().node
+
+    # userid = models.UUIDField(
+    #   default=uuid.uuid4().int,
+    #   editable=False
+    # )
+
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
