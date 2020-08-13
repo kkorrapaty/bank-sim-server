@@ -3,6 +3,7 @@ from .views.mango_views import Mangos, MangoDetail
 from .views.user_views import SignUp, SignIn, SignOut, ChangePassword
 from .views.saving_views import Savings, SavingDetail
 from .views.trans_views import Transactions, TransactionDetail
+from .views.checking_views import Checkings, CheckingDetail
 
 urlpatterns = [
 	# Restful routing
@@ -17,9 +18,16 @@ urlpatterns = [
 
     # Savings routes
     path('savings/', Savings.as_view(), name='savings'),
+
     path('savings/<int:pk>', SavingDetail.as_view(), name='saving_detail'),
 
     # transaction routes
     path('transactions/', Transactions.as_view(), name='transactions'),
+
     path('transactions/<int:pk>', TransactionDetail.as_view(), name='transaction_detail'),
+
+    # checking routes
+    path('checkings/', Checkings.as_view(), name='checkings'),
+
+    path('checkings/<int:pk>', CheckingDetail.as_view(), name='checking_detail'),
 ]

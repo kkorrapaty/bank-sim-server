@@ -5,8 +5,14 @@ from .models.mango import Mango
 from .models.user import User
 from .models.saving import Saving
 from .models.transaction import Transaction
+from .models.checking import Checking
 
 import uuid
+
+class CheckingSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Checking
+    fields = ('id', 'amount', 'owner')
 
 class SavingSerializer(serializers.ModelSerializer):
   class Meta:
