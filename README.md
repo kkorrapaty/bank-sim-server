@@ -31,6 +31,25 @@ and it has a ManyToOne relationship with Savings.
 
 In the future versions of this application I would like to add the ability for users to create multiple checkout accounts. As well as that, I want to invoke a functionality that allows those various accounts to transfer funds between each other
 
+#### Catalog of Routes
+
+| Verb   | URI Pattern  |
+| ------ | ------------ |
+| GET   |  sign-up/ |
+| POST |  sign-in/ |
+| PATCH   | change-pw/ |
+| DELETE   | sign-out/ |
+| GET    | savings/ |
+| GET    | savings/:id |
+| POST   | savings/     |
+| PATCH  | savings/:id |
+| DELETE | savings/:id |
+| GET    | transactions/     |
+| GET    | transactions/:id |
+| POST   | transactions/     |
+| PATCH  | transactions/:id |
+| DELETE | transactions/:id |
+
 ****
 ERD:
 
