@@ -5,6 +5,7 @@ from .models.user import User
 from .models.mango import Mango
 from .models.saving import Saving
 from .models.transaction import Transaction
+from .models.checking import Checking
 
 class UserAdmin(BaseUserAdmin):
     ordering = ['id']
@@ -43,4 +44,5 @@ class UserAdmin(BaseUserAdmin):
 admin.site.register(User, UserAdmin)
 admin.site.register(Mango)
 admin.site.register(Saving)
+admin.site.register(Checking)
 admin.site.register(Transaction)
